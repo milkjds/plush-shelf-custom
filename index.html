@@ -179,7 +179,6 @@ body {
         <button id="bFront" type="button">正面</button>
         <button id="bBack" type="button">背面</button>
         <button id="bPts" type="button" aria-pressed="false">点云</button>
-        <button id="bDark" type="button" aria-pressed="false">深色背景</button>
       </div>
       <p class="fps" id="fps"></p>
       <p class="hint">拖动旋转 · 滚轮缩放 · 右键平移 · 双击复位</p>
@@ -206,7 +205,7 @@ body {
 </div>
 
 <script>
-const MANIFEST = {"collections": [{"id": "custom", "name": "Custom", "name_zh": "原创玩偶", "name_ja": "Original · custom"}], "items": [{"id": "custom_girl_cat", "collection": "custom", "name": "Girl & Cat", "name_zh": "抱猫女孩", "name_ja": "Custom", "meta": {"n": 257682, "lo": [-0.2998514175415039, -0.5346035957336426, -0.37545785307884216], "hi": [0.3174075484275818, 0.5907841324806213, 0.3722853660583496], "slo": -6.998095989227295, "shi": -2.732391834259033, "center": [0.003226052820682529, -0.0002491630613803697, -0.00630114823579786], "ext": 0.9900942859053612, "dist": 1.7326650003343822, "covK": 2021.8222371935665, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 4380594, "ply_mb": 16.7, "seed": 13, "sh_rest_dropped": false}, {"id": "custom_girl", "collection": "custom", "name": "Girl", "name_zh": "猫耳女孩", "name_ja": "Custom", "meta": {"n": 259913, "lo": [-0.28439873456954956, -0.497413694858551, -0.3082215189933777], "hi": [0.30714696645736694, 0.5004712343215942, 0.31049907207489014], "slo": -6.998095989227295, "shi": -3.1062328815460205, "center": [0.029908134341239928, 0.015378658771514897, -0.0022809827327728016], "ext": 0.958223032951355, "dist": 1.6768903076648713, "covK": 3290.3908052117345, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 4418521, "ply_mb": 16.9, "seed": 1, "sh_rest_dropped": false}, {"id": "custom_cat", "collection": "custom", "name": "Black Cat", "name_zh": "小黑猫", "name_ja": "Custom", "meta": {"n": 202856, "lo": [-0.3838955760002136, -0.4981015920639038, -0.354669988155365], "hi": [0.3830934166908264, 0.5007143020629883, 0.3571326732635498], "slo": -7.071421146392822, "shi": -2.2615678310394287, "center": [-0.0006832353770732658, 0.021211268007755274, -0.001981993764638895], "ext": 0.9545292586088181, "dist": 1.6704262025654317, "covK": 855.9807386527118, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 3448552, "ply_mb": 13.2, "seed": 1, "sh_rest_dropped": false}]};
+const MANIFEST = {"collections": [{"id": "custom", "name": "Custom", "name_zh": "原创玩偶", "name_ja": "Original · custom"}], "items": [{"id": "custom_girl_cat", "collection": "custom", "name": "Girl & Cat", "name_zh": "抱猫女孩", "name_ja": "Custom", "meta": {"n": 259856, "lo": [-0.33571696281433105, -0.49786901473999023, -0.3181655704975128], "hi": [0.35031047463417053, 0.49964264035224915, 0.31814032793045044], "slo": -6.998095989227295, "shi": -3.1401009559631348, "center": [-0.00015755966305724955, 0.013291800767183337, -0.0013940587639808544], "ext": 0.9495898678898812, "dist": 1.661782268807292, "covK": 2407.985578506616, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 4417552, "ply_mb": 16.9, "seed": 1, "sh_rest_dropped": false}, {"id": "custom_girl", "collection": "custom", "name": "Girl", "name_zh": "猫耳女孩", "name_ja": "Custom", "meta": {"n": 259913, "lo": [-0.28439873456954956, -0.497413694858551, -0.3082215189933777], "hi": [0.30714696645736694, 0.5004712343215942, 0.31049907207489014], "slo": -6.998095989227295, "shi": -3.1062328815460205, "center": [0.029908134341239928, 0.015378658771514897, -0.0022809827327728016], "ext": 0.958223032951355, "dist": 1.6768903076648713, "covK": 3290.3908052117345, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 4418521, "ply_mb": 16.9, "seed": 1, "sh_rest_dropped": false}, {"id": "custom_cat", "collection": "custom", "name": "Black Cat", "name_zh": "小黑猫", "name_ja": "Custom", "meta": {"n": 202856, "lo": [-0.3838955760002136, -0.4981015920639038, -0.354669988155365], "hi": [0.3830934166908264, 0.5007143020629883, 0.3571326732635498], "slo": -7.071421146392822, "shi": -2.2615678310394287, "center": [-0.0006832353770732658, 0.021211268007755274, -0.001981993764638895], "ext": 0.9545292586088181, "dist": 1.6704262025654317, "covK": 855.9807386527118, "yaw": 1.6580627893946132, "pitch": -0.15707963267948966}, "bytes": 3448552, "ply_mb": 13.2, "seed": 1, "sh_rest_dropped": false}]};
 (function () {
 'use strict';
 const ITEMS = MANIFEST.items;
@@ -564,20 +563,6 @@ if (V) {
   $('bFront').onclick = () => V.goTo(0);
   $('bBack').onclick = () => V.goTo(Math.PI);
   if (reduceMotion) { bRot.setAttribute('aria-pressed', 'false'); V.setAuto(false); }
-}
-// dark background: flips the whole page theme (all colours are theme tokens); remembered per browser
-{
-  const bDark = $('bDark'), root = document.documentElement;
-  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark'
-    : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
-  try { const t = localStorage.getItem('plush-theme'); if (t === 'dark' || t === 'light') root.dataset.theme = t; } catch (e) {}
-  const sync = () => bDark.setAttribute('aria-pressed', String(isDark()));
-  sync();
-  bDark.onclick = () => {
-    const t = isDark() ? 'light' : 'dark'; root.dataset.theme = t; sync();
-    try { localStorage.setItem('plush-theme', t); } catch (e) {}
-  };
-  if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', sync);
 }
 $('ref').onclick = () => { const r = $('ref'); const big = r.classList.toggle('big'); r.setAttribute('aria-label', big ? '缩小原图' : '放大原图'); };
 window.addEventListener('hashchange', () => select(location.hash.slice(1)));
